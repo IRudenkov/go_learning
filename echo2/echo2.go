@@ -3,15 +3,14 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 )
 
 //second version echo, with loop for range
 
 func main() {
-	s, sep := "", ""
-	for _, args := range os.Args[1:] {
-		s += sep + args
-		sep = " "
+	for index, args := range os.Args[1:] {
+		fmt.Println(strconv.Itoa(index+1) + " " + args)
 	}
-	fmt.Println(s)
+
 }
