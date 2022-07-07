@@ -11,7 +11,9 @@ import (
 	"time"
 )
 
-var palette = []color.Color{color.Black, color.RGBA{0x00, 0xff, 0x00, 0xff}}
+var palette = []color.Color{color.Black, color.RGBA{0x00, 0xff, 0x00, 0xff},
+	color.RGBA{0xff, 0x00, 0x00, 0xff}, color.RGBA{0x00, 0x00, 0xff, 0xff},
+	color.RGBA{0x77, 0xAA, 0xEE, 0xff}}
 
 const (
 	whiteIndex = 0
@@ -41,7 +43,8 @@ func Lisajous(out io.Writer) {
 		for t := 0.0; t < cycles*2*math.Pi; t += res {
 			x := math.Sin(t)
 			y := math.Sin(t*freq + phase)
-			img.SetColorIndex(size+int(x*size+.5), size+int(y*size+.5), blackIndex)
+			colorIndex := rand.Int31n(5)
+			img.SetColorIndex(size+int(x*size+.5), size+int(y*size+.5), uint8(colorIndex))
 
 		}
 		phase += 0.1
