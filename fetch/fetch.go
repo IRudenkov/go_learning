@@ -19,15 +19,17 @@ func main() {
 			os.Exit(1)
 		}
 		_, err = io.Copy(os.Stdout, resp.Body)
+
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "fetch чтение: %v\n", err)
 			os.Exit(1)
 		}
+		fmt.Printf("\nstatus: %s", resp.Status)
+
 		resp.Body.Close()
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "fetch чтение: %v\n", err)
+			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
 			os.Exit(1)
 		}
-		fmt.Printf("%v\n", os.Stdout)
 	}
 }
